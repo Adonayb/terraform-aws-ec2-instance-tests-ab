@@ -25,8 +25,6 @@ variable "security_group_ids" {
 variable "tags" {
   description = "Tags for instances"
   type        = map(string)
-  default     = {project     = "project-alpha"}
-
   validation {
     condition     = contains(keys(var.tags), "project")
     error_message = "All EC2 instances must have project tag"
