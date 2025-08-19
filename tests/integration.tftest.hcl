@@ -48,6 +48,7 @@ run "test_instance_count_variable" {
 }
 
 # tests/integration.tftest.hcl
+# Update tests/integration.tftest.hcl
 run "validate_ec2_instance_tags" {
   command = apply
 
@@ -57,6 +58,7 @@ run "validate_ec2_instance_tags" {
     subnet_ids     = [run.setup_infrastructure.subnet_id]
     security_group_ids = [run.setup_infrastructure.security_group_id]
     tags = {
+      project     = "project-alpha"
       environment = "dev"
     }
   }
