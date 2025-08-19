@@ -3,16 +3,11 @@ variable "instance_count" {
   type        = number
 }
 
-# variables.tf in terraform-aws-ec2-instance-tests-{your-initials}
 variable "instance_type" {
-  description = "EC2 instance type"
+  description = "Type of EC2 instance to use"
   type        = string
-  
-  validation {
-    condition     = var.instance_type == "t2.micro"
-    error_message = "All EC2 instances must be t2.micro type"
-  }
 }
+
 variable "subnet_ids" {
   description = "Subnet IDs for EC2 instances"
   type        = list(string)
@@ -23,6 +18,24 @@ variable "security_group_ids" {
   type        = list(string)
 }
 
+variable "tags" {
+  description = "Tags for instances"
+  type        = map
+  default     = {}
+}
+
+
+
+# variables.tf in terraform-aws-ec2-instance-tests-{your-initials}
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  
+  validation {
+    condition     = var.instance_type == "t2.micro"
+    error_message = "All EC2 instances must be t2.micro type"
+  }
+}
 
 variable "tags" {
   description = "Tags for the EC2 instances"
