@@ -1,3 +1,13 @@
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  }
+}
+
 # Create IAM role for EC2 instance
 resource "aws_iam_role" "ec2_role" {
   name = "ec2-instance-role"
