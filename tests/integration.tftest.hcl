@@ -69,3 +69,25 @@ run "validate_ec2_instance_tags" {
     error_message = "All EC2 instances must have project tag"
   }
 }
+
+# Add this to tests/integration.tftest.hcl
+run "validate_ec2_instance_type" {
+  command = apply
+
+  variables {
+    instance_count = 2
+    instance_type  = "t2.micro"
+    subnet_ids     = [run.setup_infrastructure.subnet_id]
+    security_group_ids = [run.setup_infrastructure.security_group_id]
+    tags = {
+      project     = "project-alpha"
+      environment = "dev"
+    }
+  }
+
+  # Test that all instances have the correct instance type
+  assert {
+    condition     = alltrue([for instance in aws_instance.app : instance.instance_type == "t2.micro"])
+    error_message = "All EC2 instances must be t2.micro type"
+  }
+}
