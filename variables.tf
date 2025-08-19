@@ -13,7 +13,6 @@ variable "instance_type" {
     error_message = "All EC2 instances must be t2.micro type"
   }
 }
-
 variable "subnet_ids" {
   description = "Subnet IDs for EC2 instances"
   type        = list(string)
@@ -23,6 +22,7 @@ variable "security_group_ids" {
   description = "Security group IDs for EC2 instances"
   type        = list(string)
 }
+
 
 variable "tags" {
   description = "Tags for the EC2 instances"
