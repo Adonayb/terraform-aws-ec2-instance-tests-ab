@@ -91,3 +91,4 @@ run "validate_ec2_instance_type" {
     error_message = "All EC2 instances must be t2.micro type"
   }
 }
+
