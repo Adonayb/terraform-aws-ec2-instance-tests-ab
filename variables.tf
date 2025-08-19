@@ -25,7 +25,7 @@ variable "security_group_ids" {
 variable "tags" {
   description = "Tags for instances"
   type        = map(string)
-  default     = {}
+  default     = {project     = "project-alpha"}
 
   validation {
     condition     = contains(keys(var.tags), "project")
