@@ -14,6 +14,10 @@ run "test_ec2_instance_creation" {
     instance_type  = "t2.micro"
     security_group_ids = [run.setup_infrastructure.security_group_id]
     subnet_ids = [run.setup_infrastructure.subnet_id]
+    tags = {
+      project     = "project-alpha"
+      environment = "dev"
+    }
   }
   
   # Test that instances are created
